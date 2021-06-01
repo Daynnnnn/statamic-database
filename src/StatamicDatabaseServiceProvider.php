@@ -39,15 +39,5 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
         Statamic::repository(NavTreeRepositoryContract::class, NavTreeRepository::class);
         Statamic::repository(TaxonomyRepositoryContract::class, TaxonomyRepository::class);
         Statamic::repository(TermRepositoryContract::class, TermRepository::class);
-
-        $this->app->singleton(
-            'Statamic\Fields\BlueprintRepository',
-            'Daynnnnn\StatamicDatabase\Blueprints\BlueprintRepository'
-        );
-
-        $this->app->singleton(
-            'Statamic\Fields\FieldsetRepository',
-            'Daynnnnn\StatamicDatabase\Fieldsets\FieldsetRepository'
-        );
     }
 }
