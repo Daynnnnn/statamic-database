@@ -23,6 +23,21 @@ Then copy the database migrations into your app using:
 Run migrations:
 `php please migrate`
 
+Then in the register function of your AppServiceProvider, add:
+```
+public function register()
+{
+    $this->app->singleton(
+        'Statamic\Fields\BlueprintRepository',
+        'Daynnnnn\StatamicDatabase\Blueprints\BlueprintRepository'
+    );
+
+    $this->app->singleton(
+        'Statamic\Fields\FieldsetRepository',
+        'Daynnnnn\StatamicDatabase\Fieldsets\FieldsetRepository'
+    );
+}
+```
 And that should be it!
 
 ## Issues/Things to work on
