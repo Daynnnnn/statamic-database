@@ -42,7 +42,6 @@ And that should be it!
 
 ## Issues/Things to work on
 
- - Breaking issue with trees on entries.
  - No tests.
  - After creating an asset container, you're shown a 404 page as you're redirected to the container using the model ID instead of the handle.
  - Still needs asset meta and forms adding.
