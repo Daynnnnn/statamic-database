@@ -1,0 +1,23 @@
+{
+    "name": "daynnnnn/statamic-database",
+    "description": "Allows you to store all Statamic data in a database.",
+    "autoload": {
+        "psr-4": {
+            "Daynnnnn\\StatamicDatabase\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic Database Driver",
+            "description": "Allows you to store all Statamic data in a database."
+        },
+        "laravel": {
+            "providers": [
+                "Daynnnnn\\StatamicDatabase\\ServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "statamic/cms": "^3.0"
+    }
+}
