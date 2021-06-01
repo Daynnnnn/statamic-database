@@ -24,7 +24,7 @@ use Daynnnnn\StatamicDatabase\Taxonomies\TermRepository;
 use Illuminate\Support\ServiceProvider;
 use Statamic\Statamic;
 
-class ServiceProvider extends AddonServiceProvider
+class StatamicDatabaseServiceProvider extends ServiceProvider
 {
     protected $config = false;
 

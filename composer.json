@@ -13,7 +13,7 @@
         },
         "laravel": {
             "providers": [
-                "Daynnnnn\\StatamicDatabase\\ServiceProvider"
+                "Daynnnnn\\StatamicDatabase\\StatamicDatabaseServiceProvider"
             ]
         }
     },
