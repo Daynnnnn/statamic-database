@@ -4,6 +4,7 @@ namespace Daynnnnn\StatamicDatabase\Assets;
 
 use Statamic\Assets\AssetRepository as BaseRepository;
 use Statamic\Contracts\Assets\Asset as AssetContract;
+use Statamic\Contracts\Assets\QueryBuilder;
 use Statamic\Facades\Stache;
 
 class AssetRepository extends BaseRepository
@@ -21,6 +22,7 @@ class AssetRepository extends BaseRepository
     {
         return [
             AssetContract::class => Asset::class,
+            QueryBuilder::class => \Statamic\Assets\QueryBuilder::class,
         ];
     }
 }
