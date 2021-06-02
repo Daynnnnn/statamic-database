@@ -40,8 +40,7 @@ And that should be it!
 ## Issues/Things to work on
 
  - No tests.
- - After creating an asset container, you're shown a 404 page as you're redirected to the container using the model ID instead of the handle.
- - Still needs asset meta and forms adding.
+ - Still needs forms and user roles/groups adding.
  - No real world testing done yet, so probably some more to be added.
 
 ## Credits
