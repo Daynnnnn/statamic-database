@@ -44,7 +44,7 @@ class AssetContainer extends FileAssetContainer
 
         $this->model = $model;
 
-        $this->id($model->id);
+        $this->id($model->handle);
 
         return $this;
     }
