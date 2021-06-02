@@ -2,6 +2,8 @@
 
 namespace Daynnnnn\StatamicDatabase;
 
+use Statamic\Contracts\Assets\AssetRepository as AssetRepositoryContract;
+use App\Statamic\Database\Assets\AssetRepository;
 use Statamic\Contracts\Assets\AssetContainerRepository as AssetContainerRepositoryContract;
 use Daynnnnn\StatamicDatabase\Assets\AssetContainerRepository;
 use Statamic\Contracts\Entries\CollectionRepository as CollectionRepositoryContract;
@@ -30,6 +32,7 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
 
     public function register()
     {
+        Statamic::repository(AssetRepositoryContract::class, AssetRepository::class);
         Statamic::repository(AssetContainerRepositoryContract::class, AssetContainerRepository::class);
         Statamic::repository(CollectionRepositoryContract::class, CollectionRepository::class);
         Statamic::repository(CollectionTreeRepositoryContract::class, CollectionTreeRepository::class);
