@@ -28,7 +28,10 @@ use Statamic\Statamic;
 
 class StatamicDatabaseServiceProvider extends ServiceProvider
 {
-    protected $config = false;
+    public function boot()
+    {
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+    }
 
     public function register()
     {

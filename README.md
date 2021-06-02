@@ -17,9 +17,6 @@ An eloquent driver for Statamic V3 which supports:
 From a standard Statamic V3 site, you can run:
 `composer require daynnnnn/statamic-database`
 
-Then copy the database migrations into your app using:
-`cp -r ./vendor/daynnnnn/statamic-database/database/migrations/* ./database/migrations/`
-
 Run migrations:
 `php please migrate`
 
