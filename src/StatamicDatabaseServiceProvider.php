@@ -3,7 +3,7 @@
 namespace Daynnnnn\StatamicDatabase;
 
 use Statamic\Contracts\Assets\AssetRepository as AssetRepositoryContract;
-use App\Statamic\Database\Assets\AssetRepository;
+use Daynnnnn\StatamicDatabase\Assets\AssetRepository;
 use Statamic\Contracts\Assets\AssetContainerRepository as AssetContainerRepositoryContract;
 use Daynnnnn\StatamicDatabase\Assets\AssetContainerRepository;
 use Statamic\Contracts\Entries\CollectionRepository as CollectionRepositoryContract;
