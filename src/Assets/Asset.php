@@ -35,15 +35,15 @@ class Asset extends FileAsset
 
     public function exists()
     {
-        if (AssetModel::where('handle', $this->container()->handle().'::'.$this->metaPath())->exists()) {
-            return true;
-        }
+        $files = Blink::once($this->container()->handle().'::files', function () {
+            return $this->container()->files();
+        });
 
         if (! $path = $this->path()) {
             return false;
         }
 
-        return $this->container()->files()->contains($path);
+        return $files->contains($path);
     }
 
     private function metaValue($key)
