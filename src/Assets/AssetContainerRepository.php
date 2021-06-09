@@ -29,7 +29,7 @@ class AssetContainerRepository extends StacheRepository
     }
 
     public function find($handle): ?AssetContainer {
-        return Blink::once('asset-containers::'.$handle, function () {
+        return Blink::once('asset-containers::'.$handle, function () use ($handle) {
             if (($model = AssetContainerModel::where('handle', $handle)->first()) == null) {
                 return null;
             }
