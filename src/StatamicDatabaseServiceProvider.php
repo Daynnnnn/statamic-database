@@ -30,20 +30,43 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../config/statamic-database.php' => config_path('statamic/statamic-database.php'),
+        ]);
+
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     public function register()
     {
-        Statamic::repository(AssetRepositoryContract::class, AssetRepository::class);
-        Statamic::repository(AssetContainerRepositoryContract::class, AssetContainerRepository::class);
-        Statamic::repository(CollectionRepositoryContract::class, CollectionRepository::class);
-        Statamic::repository(CollectionTreeRepositoryContract::class, CollectionTreeRepository::class);
-        Statamic::repository(EntryRepositoryContract::class, EntryRepository::class);
-        Statamic::repository(GlobalRepositoryContract::class, GlobalRepository::class);
-        Statamic::repository(NavigationRepositoryRepository::class, NavigationRepository::class);
-        Statamic::repository(NavTreeRepositoryContract::class, NavTreeRepository::class);
-        Statamic::repository(TaxonomyRepositoryContract::class, TaxonomyRepository::class);
-        Statamic::repository(TermRepositoryContract::class, TermRepository::class);
+        $config = config('statamic-database');
+
+        if ($config['assets']) {
+            Statamic::repository(AssetRepositoryContract::class, AssetRepository::class);
+            Statamic::repository(AssetContainerRepositoryContract::class, AssetContainerRepository::class);
+        }
+
+        if ($config['collections']) {
+            Statamic::repository(CollectionRepositoryContract::class, CollectionRepository::class);
+            Statamic::repository(CollectionTreeRepositoryContract::class, CollectionTreeRepository::class);
+        }
+
+        if ($config['entries']) {
+            Statamic::repository(EntryRepositoryContract::class, EntryRepository::class);
+        }
+
+        if ($config['globals']) {
+            Statamic::repository(GlobalRepositoryContract::class, GlobalRepository::class);
+        }
+
+        if ($config['navigation']) {
+            Statamic::repository(NavigationRepositoryRepository::class, NavigationRepository::class);
+            Statamic::repository(NavTreeRepositoryContract::class, NavTreeRepository::class);
+        }
+
+        if ($config['taxonomies']) {
+            Statamic::repository(TaxonomyRepositoryContract::class, TaxonomyRepository::class);
+            Statamic::repository(TermRepositoryContract::class, TermRepository::class);    
+        }
     }
 }
