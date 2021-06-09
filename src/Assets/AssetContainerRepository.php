@@ -29,13 +29,15 @@ class AssetContainerRepository extends StacheRepository
     }
 
     public function find($handle): ?AssetContainer {
-        if (($model = AssetContainerModel::where('handle', $handle)->first()) == null) {
-            return null;
-        }
+        return Blink::once('asset-containers::'.$handle, function () {
+            if (($model = AssetContainerModel::where('handle', $handle)->first()) == null) {
+                return null;
+            }
 
-        $assetContainer = AssetContainer::fromModel($model);
+            $assetContainer = AssetContainer::fromModel($model);
 
-        return $assetContainer;
+            return $assetContainer;
+        });
     }
 
     public function findByHandle($handle): ?AssetContainer
