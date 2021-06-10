@@ -4,6 +4,7 @@ namespace Daynnnnn\StatamicDatabase\Assets;
 
 use Illuminate\Support\Facades\Cache;
 use Statamic\Assets\Asset as FileAsset;
+use Statamic\Facades\Blink;
 use Statamic\Support\Arr;
 
 class Asset extends FileAsset
