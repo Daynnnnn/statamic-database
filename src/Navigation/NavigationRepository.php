@@ -28,12 +28,13 @@ class NavigationRepository extends StacheRepository
     }
 
     public function find($handle): ?Nav {
-        if (($model = NavigationModel::where('handle', $handle)->first()) == null) {
-            return null;
-        }
+        return Blink::once('nav::'.$handle, function () use ($handle) {
+            if (($model = NavigationModel::where('handle', $handle)->first()) == null) {
+                return null;
+            }
 
-        $nav = Nav::fromModel($model);
-        return $nav;
+            return Nav::fromModel($model);
+        });
     }
 
     public function findByHandle($handle): ?Nav
