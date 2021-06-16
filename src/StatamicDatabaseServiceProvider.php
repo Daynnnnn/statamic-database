@@ -31,7 +31,7 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/statamic-database.php' => config_path('statamic/statamic-database.php'),
+            __DIR__.'/../config/statamic-database.php' => config_path('statamic/database.php'),
         ]);
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
@@ -39,7 +39,9 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $config = config('statamic-database');
+        $this->mergeConfigFrom(__DIR__.'/../config/statamic-database.php', 'statamic.database');
+        
+        $config = config('statamic.database');
 
         if ($config['assets']) {
             Statamic::repository(AssetRepositoryContract::class, AssetRepository::class);
