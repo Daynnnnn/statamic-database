@@ -32,15 +32,19 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/statamic-database.php' => config_path('statamic/database.php'),
-        ]);
+        ], 'statamic-database-config');
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->publishes([
+            __DIR__.'/Database/Seeders/DefaultBlueprintSeeder.php' => database_path('seeders/DefaultBlueprintSeeder.php'),
+        ], 'statamic-database-seeders');
+
+        $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
     }
 
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/statamic-database.php', 'statamic.database');
-        
+
         $config = config('statamic.database');
 
         if ($config['assets']) {
@@ -68,7 +72,7 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
 
         if ($config['taxonomies']) {
             Statamic::repository(TaxonomyRepositoryContract::class, TaxonomyRepository::class);
-            Statamic::repository(TermRepositoryContract::class, TermRepository::class);    
+            Statamic::repository(TermRepositoryContract::class, TermRepository::class);
         }
     }
 }

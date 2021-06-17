@@ -3,6 +3,7 @@
 namespace Daynnnnn\StatamicDatabase\Blueprints;
 
 use Daynnnnn\StatamicDatabase\Blueprints\Traits\ExistsAsModel;
+use Daynnnnn\StatamicDatabase\Exceptions\DefaultBlueprintNotFoundException;
 use Statamic\Facades\Blink;
 use Statamic\Fields\Blueprint;
 use Statamic\Fields\BlueprintRepository as BaseBlueprintRepository;
@@ -23,7 +24,15 @@ class BlueprintRepository extends BaseBlueprintRepository
             [$namespace, $handle] = $this->getNamespaceAndHandle($blueprint);
             if (! $blueprint) {
                 return null;
-            } elseif (($blueprintModel = BlueprintModel::where('namespace', $namespace)->where('handle', $handle)->first()) === null) {
+            }
+
+            if (($blueprintModel = BlueprintModel::where('namespace', $namespace)->where('handle', $handle)->first()) === null) {
+                throw_if(
+                    $namespace === null && $handle === 'default',
+                    DefaultBlueprintNotFoundException::class,
+                    'Default Blueprint is required but not found. '
+                );
+
                 return null;
             }
 
