@@ -4,6 +4,7 @@ namespace Daynnnnn\StatamicDatabase\Taxonomies;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Statamic\Facades\Site;
 use Statamic\Facades\Term as TermFacade;
 use Statamic\Taxonomies\Term as FileTerm;
 
@@ -23,7 +24,7 @@ class Term extends FileTerm
         foreach (Arr::pull($data, 'localizations', []) as $locale => $localeData) {
             $term->dataForLocale($locale, $localeData);
         }
-        
+
         $term->dataForLocale($term->defaultLocale(), $data);
 
         return $term;
@@ -34,9 +35,9 @@ class Term extends FileTerm
         $model = TermModel::firstOrNew([
             'slug' => $this->slug(),
         ]);
-        
+
         $model->taxonomy = $this->taxonomy;
-        $model->data = $this->fileData();
+        $model->data = $this->dbData();
         $model->save();
 
         return $model;
@@ -58,5 +59,14 @@ class Term extends FileTerm
     public function lastModified()
     {
         return $this->model->updated_at;
+    }
+
+    public function dbData()
+    {
+        $data = $this->fileData();
+
+        $data['site'] = Site::current()->handle();
+
+        return $data;
     }
 }
