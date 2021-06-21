@@ -16,9 +16,15 @@ class GlobalSet extends FileGlobalSet
         $set->model = $model->id;
         $set->handle = $model->handle;
         $set->title = $model->data['title'];
-        $localization = $set->makeLocalization(Site::default()->handle());
-        $localization->data($model->data['data']);
-        $set->addLocalization($localization);
+
+        $variables = $model->data['variables'] ?? [Site::selected()->handle() => []];
+
+        foreach ($variables as $key => $variableData) {
+            $variable = $set->makeLocalization($key);
+            $variable->data($variableData ?? []);
+            $set->addLocalization($variable);
+        }
+        
         return $set;
     }
 
@@ -34,6 +40,10 @@ class GlobalSet extends FileGlobalSet
         $model = GlobalModel::firstOrNew([
             'handle' => $this->id(),
         ]);
+
+        foreach ($this->localizations() as $key => $localization) {
+            $data['variables'][$localization->locale()] = $localization->fileData();
+        }
 
         $model->data = $data;
         $model->save();
