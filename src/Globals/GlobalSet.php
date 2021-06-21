@@ -12,7 +12,7 @@ class GlobalSet extends FileGlobalSet
 
     public static function fromModel(Model $model)
     {
-        $set = new (self::class);
+        $set = new GlobalSet;
         $set->model = $model->id;
         $set->handle = $model->handle;
         $set->title = $model->data['title'];
