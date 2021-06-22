@@ -2,6 +2,8 @@
 
 namespace Daynnnnn\StatamicDatabase\Forms;
 
+use Statamic\Contracts\Data\Augmentable;
+use Statamic\Contracts\Forms\Form as FormContract;
 use Statamic\Events\FormDeleted;
 use Statamic\Events\FormSaved;
 use Statamic\Forms\Form as FileForm;
