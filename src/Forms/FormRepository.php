@@ -1,6 +1,6 @@
 <?php
 
-namespace Statamic\Forms;
+namespace Daynnnnn\StatamicDatabase\Forms;
 
 use Statamic\Forms\FormRepository as FileFormRepository;
 use Statamic\Contracts\Forms\Form as FormContract;

@@ -1,25 +1,13 @@
 <?php
 
-namespace Statamic\Forms;
+namespace Daynnnnn\StatamicDatabase\Forms;
 
-use Statamic\Contracts\Data\Augmentable;
-use Statamic\Contracts\Data\Augmented;
-use Statamic\Contracts\Forms\Form as FormContract;
-use Statamic\Contracts\Forms\Submission;
-use Statamic\Data\HasAugmentedInstance;
-use Statamic\Events\FormBlueprintFound;
 use Statamic\Events\FormDeleted;
 use Statamic\Events\FormSaved;
-use Statamic\Facades\Blueprint;
-use Statamic\Facades\File;
-use Statamic\Facades\Folder;
-use Statamic\Facades\YAML;
-use Statamic\Forms\Exceptions\BlueprintUndefinedException;
-use Statamic\Statamic;
+use Statamic\Forms\Form as FileForm;
 use Statamic\Support\Arr;
-use Statamic\Support\Traits\FluentlyGetsAndSets;
 
-class Form implements FormContract, Augmentable
+class Form extends FileForm implements FormContract, Augmentable
 {
     /**
      * Save form.
