@@ -6,6 +6,7 @@ use Statamic\Contracts\Data\Augmentable;
 use Statamic\Contracts\Forms\Submission as SubmissionContract;
 use Statamic\Events\SubmissionDeleted;
 use Statamic\Events\SubmissionSaved;
+use Statamic\Forms\Submission as FileSubmission;
 
 class Submission extends FileSubmission implements SubmissionContract, Augmentable
 {
