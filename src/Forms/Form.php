@@ -11,6 +11,16 @@ use Statamic\Support\Arr;
 
 class Form extends FileForm implements FormContract, Augmentable
 {
+    protected $model;
+
+    /**
+     * Get Model ID
+     */
+    public function id()
+    {
+        return $this->model ?? ($this->model = FormModel::where('handle', $this->handle())->first()->id());
+    }
+
     /**
      * Save form.
      */
@@ -84,12 +94,11 @@ class Form extends FileForm implements FormContract, Augmentable
      */
     public function submissions()
     {
-        $path = config('statamic.forms.submissions').'/'.$this->handle();
-
-        return collect(Folder::getFilesByType($path, 'yaml'))->map(function ($file) {
+        $formId = FormModel::where('handle', $this->handle())->first()->id;
+        return SubmissionModel::where('form_id', $formId)->all()->map(function ($model) {
             return $this->makeSubmission()
-                ->id(pathinfo($file)['filename'])
-                ->data(YAML::parse(File::get($file)));
+                ->id($model->handle)
+                ->data($model->data);
         });
     }
 }
