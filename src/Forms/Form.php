@@ -62,7 +62,7 @@ class Form extends FileForm implements FormContract, Augmentable
     public function hydrate()
     {
         $data = FormModel::where('handle', $this->handle())->first()->data;
-        $data->filter(function ($value, $property) {
+        collect($data)->filter(function ($value, $property) {
                 return in_array($property, [
                     'title',
                     'honeypot',
