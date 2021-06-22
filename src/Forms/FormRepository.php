@@ -19,7 +19,7 @@ class FormRepository extends FileFormRepository implements Contract
     {
         $form = $this->make($handle);
 
-        if (($model = FormModel::where('handle', $handle)->first())) {
+        if (($model = FormModel::where('handle', $handle)->first()) === null) {
             return;
         }
 
