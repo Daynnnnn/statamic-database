@@ -13,7 +13,7 @@ use Daynnnnn\StatamicDatabase\Trees\CollectionTreeRepository;
 use Statamic\Contracts\Entries\EntryRepository as EntryRepositoryContract;
 use Daynnnnn\StatamicDatabase\Entries\EntryRepository;
 use Statamic\Contracts\Forms\FormRepository as FormRepositoryContract;
-use Daynnnnn\StatamicDatabase\Globals\FormRepository;
+use Daynnnnn\StatamicDatabase\Forms\FormRepository;
 use Statamic\Contracts\Globals\GlobalRepository as GlobalRepositoryContract;
 use Daynnnnn\StatamicDatabase\Globals\GlobalRepository;
 use Statamic\Contracts\Structures\NavigationRepository as NavigationRepositoryRepository;
