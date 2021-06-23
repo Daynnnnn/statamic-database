@@ -11,6 +11,11 @@ use Statamic\Forms\Submission as FileSubmission;
 class Submission extends FileSubmission implements SubmissionContract, Augmentable
 {
     /**
+     * @var string
+     */
+    protected $id;
+
+    /**
      * Save the submission.
      */
     public function save()
