@@ -4,7 +4,7 @@ namespace Daynnnnn\StatamicDatabase\Taxonomies;
 
 use Statamic\Stache\Repositories\TermRepository as StacheRepository;
 use Statamic\Contracts\Taxonomies\Term as TermContract;
-use Illuminate\Support\Str;
+use Statamic\Support\Str;
 use Statamic\Facades\Collection;
 use Statamic\Facades\Site;
 use Statamic\Taxonomies\TermCollection;
