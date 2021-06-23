@@ -76,13 +76,13 @@ class TermRepository extends StacheRepository
             ->where('site', $site)
             ->first();
 
-        // TODO: Why does query not return term localized
-        $term = $term->in(Site::selected()->handle());
-        
         if (! $term) {
             return null;
         }
         
+        // TODO: Why does query not return term localized
+        $term = $term->in(Site::selected()->handle());
+
         return $term->collection($collection);
     }
 
