@@ -8,6 +8,8 @@ return [
 
     'entries' => true,
 
+    'forms' => true,
+
     'globals' => true,
 
     'navigation' => true,

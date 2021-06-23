@@ -12,6 +12,8 @@ use Statamic\Contracts\Structures\CollectionTreeRepository as CollectionTreeRepo
 use Daynnnnn\StatamicDatabase\Trees\CollectionTreeRepository;
 use Statamic\Contracts\Entries\EntryRepository as EntryRepositoryContract;
 use Daynnnnn\StatamicDatabase\Entries\EntryRepository;
+use Statamic\Contracts\Forms\FormRepository as FormRepositoryContract;
+use Daynnnnn\StatamicDatabase\Forms\FormRepository;
 use Statamic\Contracts\Globals\GlobalRepository as GlobalRepositoryContract;
 use Daynnnnn\StatamicDatabase\Globals\GlobalRepository;
 use Statamic\Contracts\Structures\NavigationRepository as NavigationRepositoryRepository;
@@ -59,6 +61,10 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
 
         if ($config['entries']) {
             Statamic::repository(EntryRepositoryContract::class, EntryRepository::class);
+        }
+
+        if ($config['forms']) {
+            Statamic::repository(FormRepositoryContract::class, FormRepository::class);
         }
 
         if ($config['globals']) {
