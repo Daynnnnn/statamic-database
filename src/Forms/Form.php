@@ -18,7 +18,7 @@ class Form extends FileForm implements FormContract, Augmentable
      */
     public function id()
     {
-        return $this->model ?? ($this->model = FormModel::where('handle', $this->handle())->first()->id());
+        return $this->model ?? ($this->model = FormModel::where('handle', $this->handle())->first()->id);
     }
 
     /**

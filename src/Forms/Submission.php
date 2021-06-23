@@ -15,7 +15,7 @@ class Submission extends FileSubmission implements SubmissionContract, Augmentab
      */
     public function save()
     {
-        $model = FormSubmission::firstOrCreate([
+        $model = FormSubmission::firstOrNew([
             'form_id' => $this->form()->id(),
             'handle' => $this->id(),
         ]);
