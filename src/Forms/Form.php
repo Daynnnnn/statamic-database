@@ -59,7 +59,7 @@ class Form extends FileForm implements FormContract, Augmentable
     {
         $this->submissions()->each->delete();
 
-        FormModel::delete($this->handle());
+        FormModel::where('handle', $this->handle())->delete();
 
         FormDeleted::dispatch($this);
     }
