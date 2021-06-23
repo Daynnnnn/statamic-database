@@ -7,6 +7,7 @@ An eloquent driver for Statamic V3 which supports:
  - Collections
  - Entries
  - Fieldsets
+ - Forms / Form Submissions
  - Global Sets
  - Navigation
  - Taxonomies/Terms
@@ -40,7 +41,7 @@ And that should be it!
 ## Issues/Things to work on
 
  - No tests.
- - Still needs forms and user roles/groups adding.
+ - Still needs user roles/groups adding.
  - No real world testing done yet, so probably some more to be added.
 
 ## Credits
