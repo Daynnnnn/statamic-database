@@ -56,4 +56,9 @@ class TaxonomyRepository extends StacheRepository
     {
         $taxonomy->toModel()->delete();
     }
+
+    private function findTaxonomyHandleByUri($uri)
+    {
+        return Taxonomy::find($uri)->handle();
+    }
 }
