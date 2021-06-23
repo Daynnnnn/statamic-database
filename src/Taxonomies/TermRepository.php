@@ -43,7 +43,7 @@ class TermRepository extends StacheRepository
         return $this->find($handle);
     }
 
-    public function findByUri(string $uri, string $site = null): ?Term
+    public function findByUri(string $uri, string $site = null): ?TermContract
     {
         $collection = Collection::all()
             ->first(function ($collection) use ($uri, $site) {
