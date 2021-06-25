@@ -2,6 +2,7 @@
 
 namespace Daynnnnn\StatamicDatabase\Taxonomies;
 
+use Statamic\Facades;
 use Statamic\Taxonomies\TermCollection;
 use Statamic\Query\EloquentQueryBuilder;
 
@@ -38,7 +39,7 @@ class TermQueryBuilder extends EloquentQueryBuilder
         // things like URLs will be scoped to the collection. We can't do it when
         // multiple collections are queried because it would be ambiguous.
         if ($this->collections && count($this->collections) == 1) {
-            $items->each->collection(Collection::findByHandle($this->collections[0]));
+            $items->each->collection(Facades\Collection::findByHandle($this->collections[0]));
         }
 
         return $items;
