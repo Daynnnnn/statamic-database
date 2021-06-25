@@ -27,7 +27,7 @@ class Term extends FileTerm
 
         $term->dataForLocale($term->defaultLocale(), $data);
 
-        return $term;
+        return $term->in(Site::selected()->handle());
     }
 
     public function toModel()
