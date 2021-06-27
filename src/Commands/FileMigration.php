@@ -224,6 +224,7 @@ class FileMigration extends Command
     private function migrateTaxonomies()
     {
         Statamic::repository(Contracts\Taxonomies\TaxonomyRepository::class, FileRepositories\TaxonomyRepository::class);
+        Statamic::repository(Contracts\Taxonomies\TermRepository::class, FileRepositories\TermRepository::class);
         $taxonomies = \Statamic\Facades\Taxonomy::all();
         
         foreach ($taxonomies as $taxonomy) {

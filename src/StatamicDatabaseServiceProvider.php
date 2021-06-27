@@ -25,6 +25,7 @@ use Daynnnnn\StatamicDatabase\Taxonomies\TaxonomyRepository;
 use Statamic\Contracts\Taxonomies\TermRepository as TermRepositoryContract;
 use Daynnnnn\StatamicDatabase\Taxonomies\TermRepository;
 
+use Daynnnnn\StatamicDatabase\Commands\FileMigration;
 use Illuminate\Support\ServiceProvider;
 use Statamic\Statamic;
 
@@ -41,6 +42,7 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
         ], 'statamic-database-seeders');
 
         $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
+        $this->commands([FileMigration::class]);
     }
 
     public function register()
