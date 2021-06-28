@@ -1,6 +1,6 @@
 <?php
 
-namespace Daynnnnn\StatamicDatabase\Console\Commands;
+namespace Daynnnnn\StatamicDatabase\Commands;
 
 use Daynnnnn\StatamicDatabase;
 use Illuminate\Console\Command;
