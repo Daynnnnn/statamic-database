@@ -49,14 +49,10 @@ class TermQueryBuilder extends EloquentQueryBuilder
     {
         if ($column === 'taxonomy') {
             $this->taxonomies[] = $operator;
-
-            return $this;
         }
 
         if ($column === 'collection') {
             $this->collections[] = $operator;
-
-            return $this;
         }
 
         return parent::where($column, $operator, $value);
@@ -66,14 +62,10 @@ class TermQueryBuilder extends EloquentQueryBuilder
     {
         if (in_array($column, ['taxonomy', 'taxonomies'])) {
             $this->taxonomies = array_merge($this->taxonomies ?? [], $values);
-
-            return $this;
         }
 
         if (in_array($column, ['collection', 'collections'])) {
             $this->collections = array_merge($this->collections ?? [], $values);
-
-            return $this;
         }
 
         return parent::whereIn($column, $values);
