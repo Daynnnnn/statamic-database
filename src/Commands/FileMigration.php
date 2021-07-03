@@ -43,13 +43,13 @@ class FileMigration extends Command
      */
     public function handle()
     {
+        $this->migrateGlobals();
         $this->migrateAssetContainers();
+        $this->migrateTaxonomies();
+        $this->migrateNavigation();
         $this->migrateCollections();
         $this->migrateEntries();
         $this->migrateForms();
-        $this->migrateGlobals();
-        $this->migrateNavigation();
-        $this->migrateTaxonomies();
         return 0;
     }
 
@@ -143,8 +143,7 @@ class FileMigration extends Command
                 'title' => $form->title(),
                 'honeypot' => $form->honeypot(),
                 'email' => collect($form->email())->map(function ($email) {
-                    $email['markdown'] = $email['markdown'] ?: null;
-    
+                    $email['markdown'] = $email['markdown'] ?? null;
                     return Arr::removeNullValues($email);
                 })->all(),
                 'metrics' => $form->metrics(),
