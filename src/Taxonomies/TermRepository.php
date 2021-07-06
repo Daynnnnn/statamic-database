@@ -27,9 +27,9 @@ class TermRepository extends StacheRepository
     }
 
     public function find($id): TermContract {
-        // TODO: Less hacky way of converting refference to id, possibly
-        //       able to replace refference function altogether?
-        if (($model = TermModel::where('slug', Str::afterLast($id, '::'))->first()) == null) {
+        [$taxonomy, $slug] = explode('::', $id);
+
+        if (($model = TermModel::where('taxonomy', $taxonomy)->where('slug', $slug)->first()) == null) {
             return null;
         }
 
