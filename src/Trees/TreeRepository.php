@@ -10,18 +10,15 @@ class TreeRepository
 
     public function save($tree)
     {
-        $model = $tree->toModel();
+        $model = $this->toModel($tree);
 
         $model->save();
-
-        $tree->model($model->fresh());
     }
 
     public function delete($tree)
     {
-        $tree->toModel()->delete();
+        $this->toModel($tree)->delete();
     }
-
 
     public static function bindings()
     {

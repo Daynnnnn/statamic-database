@@ -3,6 +3,7 @@
 namespace Daynnnnn\StatamicDatabase\Trees;
 
 use Statamic\Facades\Blink;
+use Statamic\Structures\CollectionTree;
 
 class CollectionTreeRepository extends TreeRepository
 {
@@ -14,7 +15,34 @@ class CollectionTreeRepository extends TreeRepository
                 return null;
             }
             
-            return CollectionTree::fromModel($model);
+            return self::fromModel($model);
         });
     }
+
+    protected static function fromModel(TreeModel $model)
+    {
+        [$type, $handle, $site] = explode('::', $model->handle);
+
+        return (new CollectionTree)
+            ->handle($handle)
+            ->locale($site)
+            ->tree($model->data['tree'])
+            ->syncOriginal();
+    }
+
+    protected function toModel($tree)
+    {
+        $site = $tree->locale();
+        $handle = $tree->handle();
+        
+        $model = TreeModel::firstOrNew([
+            'handle' => "collection::$handle::$site",
+        ]);
+
+        $model->data = $tree->fileData();
+        $model->save();
+
+        return $model;
+    }
+
 }

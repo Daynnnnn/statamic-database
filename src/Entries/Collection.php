@@ -41,14 +41,6 @@ class Collection extends FileCollection
         return $collection;
     }
 
-    protected function makeStructureFromContents()
-    {
-        return (new CollectionStructure)
-            ->handle($this->handle())
-            ->expectsRoot($this->structureContents['root'] ?? false)
-            ->maxDepth($this->structureContents['max_depth'] ?? null);
-    }
-
     public function toModel()
     {
         $data = $this->fileData();

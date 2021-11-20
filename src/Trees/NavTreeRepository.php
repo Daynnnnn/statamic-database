@@ -3,6 +3,7 @@
 namespace Daynnnnn\StatamicDatabase\Trees;
 
 use Statamic\Facades\Blink;
+use Statamic\Structures\NavTree;
 
 class NavTreeRepository extends TreeRepository
 {
@@ -14,7 +15,33 @@ class NavTreeRepository extends TreeRepository
                 return null;
             }
             
-            return NavTree::fromModel($model);
+            return self::fromModel($model);
         });
+    }
+
+    protected static function fromModel(TreeModel $model)
+    {
+        [$type, $handle, $site] = explode('::', $model->handle);
+
+        return (new NavTree)
+            ->handle($handle)
+            ->locale($site)
+            ->tree($model->data['tree'])
+            ->syncOriginal();
+    }
+
+    protected function toModel($tree)
+    {
+        $site = $tree->locale();
+        $handle = $tree->handle();
+        
+        $model = TreeModel::firstOrNew([
+            'handle' => "navigation::$handle::$site",
+        ]);
+
+        $model->data = $tree->fileData();
+        $model->save();
+
+        return $model;
     }
 }
