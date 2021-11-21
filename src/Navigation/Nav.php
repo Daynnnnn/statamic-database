@@ -2,18 +2,12 @@
 
 namespace Daynnnnn\StatamicDatabase\Navigation;
 
-use Daynnnnn\StatamicDatabase\Trees\NavTree;
 use Statamic\Facades\Nav as NavFacade;
 use Statamic\Structures\Nav as FileNav;
 
 class Nav extends FileNav
 {
     protected $model;
-
-    public function newTreeInstance()
-    {
-        return new NavTree;
-    }
 
     public static function fromModel(NavigationModel $model)
     {
