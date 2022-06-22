@@ -11,7 +11,7 @@ class EntryQueryBuilder extends EloquentQueryBuilder implements QueryBuilder
 {
     use QueriesTaxonomizedEntries;
 
-    protected $columns = [
+    protected $databaseColumns = [
         'id', 'site', 'origin_id', 'published', 'status', 'slug', 'uri',
         'data', 'date', 'collection', 'created_at', 'updated_at',
     ];
@@ -29,7 +29,7 @@ class EntryQueryBuilder extends EloquentQueryBuilder implements QueryBuilder
             $column = 'origin_id';
         }
 
-        if (! in_array($column, $this->columns)) {
+        if (! in_array($column, $this->databaseColumns)) {
             $column = 'data->'.$column;
         }
 
