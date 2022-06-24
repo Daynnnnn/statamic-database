@@ -50,9 +50,16 @@ class FormRepository extends FileFormRepository implements Contract
 
     public static function bindings(): array
     {
-        return [
+        $config = config('statamic.database');
+
+        $baseBindings = [
             FormContract::class => Form::class,
-            SubmissionContract::class => Submission::class,
         ];
+
+        if($config['form_submissions']) {
+            $baseBindings[SubmissionContract::class] = Submission::class;
+        }
+
+        return $baseBindings;
     }
 }

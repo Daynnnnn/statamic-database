@@ -18,6 +18,9 @@ An eloquent driver for Statamic V3 which supports:
 From a standard Statamic V3 site, you can run:
 `composer require daynnnnn/statamic-database`
 
+Add the config files:
+`php artisan vendor:publish --tag="statamic-database-config"`
+
 Run migrations:
 `php please migrate`
 
@@ -25,18 +28,44 @@ Then in the register function of your AppServiceProvider, add:
 ```
 public function register()
 {
-    $this->app->singleton(
-        'Statamic\Fields\BlueprintRepository',
-        'Daynnnnn\StatamicDatabase\Blueprints\BlueprintRepository'
-    );
+    if (config('statamic.database.blueprints')) {
+        $this->app->singleton(
+            'Statamic\Fields\BlueprintRepository',
+            'Daynnnnn\StatamicDatabase\Blueprints\BlueprintRepository'
+        );
+    }
 
-    $this->app->singleton(
-        'Statamic\Fields\FieldsetRepository',
-        'Daynnnnn\StatamicDatabase\Fieldsets\FieldsetRepository'
-    );
+    if (config('statamic.database.fieldsets')) {
+        $this->app->singleton(
+            'Statamic\Fields\FieldsetRepository',
+            'Daynnnnn\StatamicDatabase\Fieldsets\FieldsetRepository'
+        );
+    }
 }
 ```
 And that should be it!
+
+## Customising what data is stored in the Database
+If you want to customise what data is stored in the database, you can override the default behaviour by altering the config file.
+
+For example if you wanted to store some structure data as yaml so that can be easily inserted into version control you could do:
+
+```php
+return [
+    'assets' => true,
+    'blueprints' => false, // Default true
+    'collections' => false, // Default true
+    'entries' => true,
+    'fieldsets' => false, // Default true
+    'forms' => false, // Default true
+    'form_submissions' => true,
+    'globals' => true,
+    'navigation' => true,
+    'taxonomies' => true,
+];
+```
+
+This will make sure that blueprints, collections, fieldset and forms are stored in yaml files, but still keep submissions and entries in the database.
 
 ## Issues/Things to work on
 
