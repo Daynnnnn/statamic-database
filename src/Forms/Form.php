@@ -94,7 +94,14 @@ class Form extends FileForm implements FormContract, Augmentable
      */
     public function submissions()
     {
+        $databaseSubmissions = config('statamic.database.form_submissions');
+
+        if (!$databaseSubmissions) {
+            return parent::submissions();
+        }
+
         $formId = FormModel::where('handle', $this->handle())->first()->id;
+
         return SubmissionModel::where('form_id', $formId)->get()->map(function ($model) {
             return $this->makeSubmission()
                 ->id($model->handle)
