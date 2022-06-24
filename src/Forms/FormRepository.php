@@ -6,6 +6,7 @@ use Statamic\Forms\FormRepository as FileFormRepository;
 use Statamic\Contracts\Forms\Form as FormContract;
 use Statamic\Contracts\Forms\FormRepository as Contract;
 use Statamic\Contracts\Forms\Submission as SubmissionContract;
+use Statamic\Forms\Submission as FileSubmission;
 
 class FormRepository extends FileFormRepository implements Contract
 {
@@ -50,9 +51,11 @@ class FormRepository extends FileFormRepository implements Contract
 
     public static function bindings(): array
     {
+        $databaseSubmissions = config('statamic.database.form_submissions');
+
         return [
             FormContract::class => Form::class,
-            SubmissionContract::class => Submission::class,
+            SubmissionContract::class => $databaseSubmissions ? Submission::class : FileSubmission::class,
         ];
     }
 }
