@@ -26,7 +26,7 @@ class TermRepository extends StacheRepository
         return TermCollection::make($keys);
     }
 
-    public function find($id): TermContract {
+    public function find($id): ?TermContract {
         [$taxonomy, $slug] = explode('::', $id);
 
         if (($model = TermModel::where('taxonomy', $taxonomy)->where('slug', $slug)->first()) == null) {
