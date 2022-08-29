@@ -27,7 +27,7 @@ class TaxonomyRepository extends StacheRepository
         });
     }
 
-    public function find($id): Taxonomy {
+    public function find($id): ?Taxonomy {
         return Blink::once('taxonomy:'.$id, function () use ($id) {
             if (($model = TaxonomyModel::where('handle', $id)->first()) == null) {
                 return null;

@@ -28,7 +28,7 @@ class GlobalRepository extends StacheRepository
         });
     }
 
-    public function find($set): GlobalSet {
+    public function find($set): ?GlobalSet {
         if (($model = GlobalModel::where('handle', $set)->first()) == null) {
             return null;
         }
