@@ -45,7 +45,7 @@ class TermQueryBuilder extends EloquentQueryBuilder
         return $items;
     }
 
-    public function where($column, $operator = null, $value = null)
+    public function where($column, $operator = null, $value = null, $boolean = 'and')
     {
         if ($column === 'taxonomy') {
             $this->taxonomies[] = $operator;
@@ -58,7 +58,7 @@ class TermQueryBuilder extends EloquentQueryBuilder
         return parent::where($column, $operator, $value);
     }
 
-    public function whereIn($column, $values)
+    public function whereIn($column, $values, $boolean = 'and')
     {
         if (in_array($column, ['taxonomy', 'taxonomies'])) {
             $this->taxonomies = array_merge($this->taxonomies ?? [], $values);
@@ -71,7 +71,7 @@ class TermQueryBuilder extends EloquentQueryBuilder
         return parent::whereIn($column, $values);
     }
 
-    public function paginate($perPage = null, $columns = ['*'])
+    public function paginate($perPage = null, $columns = [], $pageName = 'page', $page = null)
     {
         return parent::paginate($perPage, $columns);
     }
