@@ -52,16 +52,20 @@ For example if you wanted to store some structure data as yaml so that can be ea
 
 ```php
 return [
-    'assets' => true,
+    'assets_containers' => true,
+    'asset_metas' => true,
     'blueprints' => false, // Default true
     'collections' => false, // Default true
+    'collection_trees' => true,
     'entries' => true,
     'fieldsets' => false, // Default true
     'forms' => false, // Default true
     'form_submissions' => true,
     'globals' => true,
     'navigation' => true,
+    'navigation_trees' => true,
     'taxonomies' => true,
+    'terms' => true,
 ];
 ```
 

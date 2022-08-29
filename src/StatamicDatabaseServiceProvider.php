@@ -51,13 +51,19 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
 
         $config = config('statamic.database');
 
-        if ($config['assets']) {
-            Statamic::repository(AssetRepositoryContract::class, AssetRepository::class);
+        if ($config['assets_containers']) {
             Statamic::repository(AssetContainerRepositoryContract::class, AssetContainerRepository::class);
+        }
+
+        if ($config['asset_metas']) {
+            Statamic::repository(AssetRepositoryContract::class, AssetRepository::class);
         }
 
         if ($config['collections']) {
             Statamic::repository(CollectionRepositoryContract::class, CollectionRepository::class);
+        }
+
+        if ($config['collection_trees']) {
             Statamic::repository(CollectionTreeRepositoryContract::class, CollectionTreeRepository::class);
         }
 
@@ -75,11 +81,17 @@ class StatamicDatabaseServiceProvider extends ServiceProvider
 
         if ($config['navigation']) {
             Statamic::repository(NavigationRepositoryRepository::class, NavigationRepository::class);
+        }
+
+        if ($config['navigation_trees']) {
             Statamic::repository(NavTreeRepositoryContract::class, NavTreeRepository::class);
         }
 
         if ($config['taxonomies']) {
             Statamic::repository(TaxonomyRepositoryContract::class, TaxonomyRepository::class);
+        }
+
+        if ($config['terms']) {
             Statamic::repository(TermRepositoryContract::class, TermRepository::class);
         }
     }
